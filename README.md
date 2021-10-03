@@ -1,3 +1,9 @@
+## .env archive
+.env was not uploaded to the git repositoty to keep the safety of sensitive informations example, the web-app is expecting three variables inside .env provided by Marvel API itself.
+REACT_APP_SECRET_KEY
+REACT_APP_PUBLIC_KEY
+REACT_APP_MARVEL_API
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
