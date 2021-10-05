@@ -1,7 +1,13 @@
 import React from "react";
 import { useHistory, withRouter, useLocation } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
-import { Container, HomeTitle, SerchLabel, Copyright } from "./styles";
+import {
+  Container,
+  SearchContainer,
+  HomeTitle,
+  SerchLabel,
+  Copyright,
+} from "./styles";
 
 function Home() {
   const history = useHistory();
@@ -25,12 +31,7 @@ function Home() {
           justifyContent: "center",
         }}
       >
-        <div
-          style={{
-            position: "relative",
-            margin: "10%",
-          }}
-        >
+        <SearchContainer>
           <SearchOutlined
             style={{
               position: "absolute",
@@ -46,7 +47,7 @@ function Home() {
             onKeyDown={(event) => handleSearch(event)}
             placeholder="Pesquise um personagem"
           ></SerchLabel>
-        </div>
+        </SearchContainer>
       </div>
       <Copyright href="http://marvel.com">
         Data provided by Marvel. © 2020 MARVEL

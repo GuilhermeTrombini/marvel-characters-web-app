@@ -82,15 +82,6 @@ export const MoreInfo = styled.button`
   cursor: pointer;
 `;
 
-export const CharImage = styled.img`
-  display: block;
-  margin: 0 auto;
-  margin-top: 20px;
-  border-radius: 10px;
-  height: 150px;
-  width: 150px;
-`;
-
 export const CharName = styled.h3`
   font-family: Bungee;
   text-align: center;
@@ -99,6 +90,10 @@ export const CharName = styled.h3`
   margin: 20px auto;
   padding: 0 20px;
   line-height: 1.5;
+  padding: 0px 24px;
+  @media (min-width: 768px) {
+    padding: 0px 100px;
+  }
 
   @media (min-width: 768px) {
     font-size: 1.5rem;

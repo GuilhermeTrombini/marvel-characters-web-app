@@ -13,15 +13,29 @@ export const Container = styled.div`
   background-size: cover;
 `;
 
+export const SearchContainer = styled.div`
+  position: relative;
+  margin-top: 50%;
+
+  @media (min-width: 768px) {
+    margin-top: 10%;
+  }
+
+  @media (min-width: 1200px) {
+    margin-top: 5%;
+  }
+`;
+
 export const HomeTitle = styled.h1`
   font-family: Bungee;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #fff;
   line-height: 1.5;
   margin: 0 auto;
   padding-top: 20%;
   text-transform: uppercase;
+  opacity: 87%;
 
   @media (min-width: 768px) {
     padding-top: 10%;
@@ -53,4 +67,5 @@ export const Copyright = styled.a`
   color: #fff;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
 `;

@@ -1,20 +1,27 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   display: block;
   margin: 0;
   align-items: center;
-  height: 100vh;
-  min-height: 100%;
+  min-height: calc(100vh - 150px);
   background: black;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+  padding: 0px 24px;
+  padding-bottom: 100px;
+
+  @media (min-width: 768px) {
+    padding: 0px 100px;
+    padding-bottom: 150px;
+  }
 `;
 
 export const SearchBack = styled.button`
   font-family: Bungee;
-  text-align: center;
+  text-align: left;
   font-size: 1rem;
   color: #fff;
   margin: 0 auto;
@@ -25,6 +32,20 @@ export const SearchBack = styled.button`
   border: none;
   cursor: pointer;
 `;
+export const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+
+  @media (min-width: 930px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1330px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
 
 export const ButtonCard = styled.button`
   display: flex;
@@ -32,25 +53,23 @@ export const ButtonCard = styled.button`
   background: transparent;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
   margin-top: 15px;
   margin-bottom: 15px;
   outline: none;
   cursor: pointer;
 `;
 
-export const CharImage = styled.img`
-  border-radius: 10px;
-  height: 100px;
-  width: 100px;
-`;
-
 export const CharName = styled.h3`
   font-family: Bungee;
-  text-align: center;
+  text-align: left;
   font-size: 1rem;
   color: #fff;
   margin-left: 20px;
+  width: 250px;
+  white-space: nowrap;
+  line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @media (min-width: 768px) {
     font-size: 1.5rem;

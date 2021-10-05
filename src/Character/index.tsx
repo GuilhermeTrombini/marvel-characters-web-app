@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import {
   Container,
   SearchBack,
   ContainerSafe,
-  CharImage,
   CharName,
   HomeTitle,
   Copyright,
@@ -47,7 +47,16 @@ function Character() {
           />
         </SearchBack>
       </Link>
-      <CharImage src={`${character.thumbnail.path}/standard_medium.jpg`} />
+      <div style={{ display: "block", margin: "0 auto" }}>
+        <LazyLoadImage
+          alt={character.name}
+          height={150}
+          effect="opacity"
+          src={`${character.thumbnail.path}/standard_medium.jpg`}
+          width={150}
+          style={{ display: "block", borderRadius: "10px" }}
+        />
+      </div>
       <CharName>{character.name}</CharName>
       <CharName>{character.description}</CharName>
       <a href={`${character.url}`}>

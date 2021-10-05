@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import MarvelApiService from "../MarvelApi";
 import md5 from "md5";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, LoadingOutlined } from "@ant-design/icons";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import {
   Container,
   SearchBack,
+  GridContainer,
   ButtonCard,
-  CharImage,
   CharName,
   PlatformTitle,
   NotFound,
@@ -38,17 +39,23 @@ function Search() {
   const hash = md5(time + secretKey + PUBLIC_KEY);
 
   const [characters, setCharacters] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const location: LocationInterface = useLocation();
   const keyword = location.state?.keywordState
     ? location.state.keywordState
     : "";
   useEffect(() => {
-    if (keyword && keyword !== "")
+    setIsLoading(true);
+    if (keyword && keyword !== "") {
       MarvelApiService.get(
-        `characters?name=${keyword}&apikey=${PUBLIC_KEY}&hash=${hash}&ts=${time}`
+        `characters?nameStartsWith=${keyword}&apikey=${PUBLIC_KEY}&hash=${hash}&ts=${time}`
       ).then((response) => {
         setCharacters(response.data.data.results);
+        setIsLoading(false);
       });
+    } else {
+      setIsLoading(false);
+    }
   }, []);
 
   const CharCard = ({ title, thumbnail, description, url }: any) => {
@@ -61,7 +68,14 @@ function Search() {
     return (
       <Link to={{ pathname: "/character", state: character }}>
         <ButtonCard>
-          <CharImage src={`${thumbnail.path}/standard_medium.jpg`} />
+          <LazyLoadImage
+            alt={title}
+            height={100}
+            effect="opacity"
+            src={`${thumbnail.path}/standard_medium.jpg`}
+            width={100}
+            style={{ borderRadius: "10px" }}
+          />
           <CharName>{title}</CharName>
         </ButtonCard>
       </Link>
@@ -78,27 +92,40 @@ function Search() {
           />
         </SearchBack>
       </Link>
-      {keyword !== "" && keyword && characters.length > 0 ? (
-        characters.map((item: CharacterStructure) => {
-          if (item.name) {
-            if (
-              item.name.toLowerCase().includes(keyword.toLowerCase()) ||
-              item.description.toLowerCase().includes(keyword.toLowerCase())
-            ) {
-              return (
-                <CharCard
-                  title={item.name}
-                  thumbnail={item.thumbnail}
-                  description={item.description}
-                  url={item.urls[0].url}
-                />
-              );
+      {isLoading ? (
+        <div>
+          <LoadingOutlined
+            style={{
+              color: "#fff",
+              fontSize: "80px",
+              marginLeft: "10px",
+              marginTop: "60px",
+            }}
+          />
+        </div>
+      ) : keyword !== "" && keyword && characters.length > 0 ? (
+        <GridContainer>
+          {characters.map((item: CharacterStructure) => {
+            if (item.name) {
+              if (
+                item.name.toLowerCase().includes(keyword.toLowerCase()) ||
+                item.description.toLowerCase().includes(keyword.toLowerCase())
+              ) {
+                return (
+                  <CharCard
+                    title={item.name}
+                    thumbnail={item.thumbnail}
+                    description={item.description}
+                    url={item.urls[0].url}
+                  />
+                );
+              }
+            } else {
+              return <NotFound>Ops, não encontramos esse personagem.</NotFound>;
             }
-          } else {
-            return <NotFound>Ops, não encontramos esse personagem.</NotFound>;
-          }
-          return "";
-        })
+            return "";
+          })}
+        </GridContainer>
       ) : (
         <NotFound>Ops, não encontramos esse personagem.</NotFound>
       )}

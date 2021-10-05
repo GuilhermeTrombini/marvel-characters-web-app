@@ -5,8 +5,6 @@ import Character from "./Character";
 import Home from "./Home";
 import { createBrowserHistory } from "history";
 
-import "./App.css";
-
 function App() {
   return (
     <Router history={createBrowserHistory()}>
