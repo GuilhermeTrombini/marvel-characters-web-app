@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: block;
   margin: 0;
   align-items: center;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 100px);
   background: black;
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,6 +16,7 @@ export const Container = styled.div`
   @media (min-width: 768px) {
     padding: 0px 100px;
     padding-bottom: 150px;
+    min-height: calc(100vh - 150px);
   }
 `;
 
