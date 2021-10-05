@@ -65,14 +65,16 @@ export const CharName = styled.h3`
   font-size: 1rem;
   color: #fff;
   margin-left: 20px;
-  width: 250px;
+  width: 150px;
   white-space: nowrap;
-  line-clamp: 1;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
 
   @media (min-width: 768px) {
     font-size: 1.5rem;
+    width: 250px;
+    -webkit-line-clamp: 2;
   }
 `;
 

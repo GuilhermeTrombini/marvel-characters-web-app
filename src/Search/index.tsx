@@ -113,6 +113,7 @@ function Search() {
               ) {
                 return (
                   <CharCard
+                    key={item.id}
                     title={item.name}
                     thumbnail={item.thumbnail}
                     description={item.description}

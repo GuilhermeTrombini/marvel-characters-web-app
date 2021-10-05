@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, withRouter, useLocation } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 import {
   Container,
@@ -11,11 +11,8 @@ import {
 
 function Home() {
   const history = useHistory();
-  const location = useLocation();
-  console.log(location);
   const handleSearch = (event: any) => {
     if (event.key === "Enter") {
-      console.log(event);
       history.push("/search", { keywordState: event.target.value });
     } else {
       return null;
