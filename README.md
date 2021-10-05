@@ -1,5 +1,5 @@
 ## .env archive
-.env was not uploaded to the git repositoty to keep the safety of sensitive informations example, the web-app is expecting three variables inside .env provided by Marvel API itself.
+.env was uploaded to the git repositoty, but it shouldn't be to keep the safety of sensitive informations, the web-app is expecting three variables inside .env provided by Marvel API itself.
 REACT_APP_SECRET_KEY
 REACT_APP_PUBLIC_KEY
 REACT_APP_MARVEL_API
